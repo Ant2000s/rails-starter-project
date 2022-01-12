@@ -1,5 +1,7 @@
 <nav class="nav justify-content-center">
   <a class="nav-link" href="/">Home</a>
-  <a class="nav-link" href="/sign_in">Sign in</a>
-  <a class="nav-link" href="/sign_up">Sign up</a>
+  <% if  !@user %>
+    <a class="nav-link" href="/sign_in">Sign in</a>
+    <a class="nav-link" href="/sign_up">Sign up</a>
+  <% end %>
 </nav>
