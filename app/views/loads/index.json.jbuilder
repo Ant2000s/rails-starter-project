@@ -1,1 +1,1 @@
-json.array! @loads, partial: "loads/load", as: :load
+json.array! @loads, partial: 'loads/load', as: :load

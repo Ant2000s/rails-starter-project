@@ -1,1 +1,1 @@
-json.partial! "loads/load", load: @load
+json.partial! 'loads/load', load: @load
