@@ -8,11 +8,13 @@ class LoadsController < ApplicationController
 
   # GET /loads/1 or /loads/1.json
   def show
+  end
+
+  def dwnload
     extension=@load.title.split('.')
     send_file Rails.root.join('public', 'uploads', @load.title),
     :type=>"application/#{extension[1]}", :x_sendfile=>true
   end
-
   # GET /loads/new
   def new
     @load = Load.new
@@ -33,7 +35,7 @@ class LoadsController < ApplicationController
       respond_to do |format|
       if @load.save
         format.html { redirect_to @load, notice: "Load was successfully created." }
-        format.json { render :show, status: :created, location: @load }
+        format.json { render status: :created, location: @load }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @load.errors, status: :unprocessable_entity }
