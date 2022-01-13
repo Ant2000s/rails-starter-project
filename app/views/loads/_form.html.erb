@@ -1,0 +1,27 @@
+<%= form_with(model: load) do |form| %>
+  <% if load.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(load.errors.count, "error") %> prohibited this load from being saved:</h2>
+
+      <ul>
+        <% load.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cover_letter %>
+    <%= form.text_field :cover_letter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.file_field :title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
