@@ -8,9 +8,6 @@ class LoadsController < ApplicationController
 
   # GET /loads/1 or /loads/1.json
   def show
-  end
-
-  def dwnload
     extension=@load.title.split('.')
     send_file Rails.root.join('public', 'uploads', @load.title),
     :type=>"application/#{extension[1]}", :x_sendfile=>true
@@ -34,7 +31,7 @@ class LoadsController < ApplicationController
   @load.title=uploaded_io.original_filename
       respond_to do |format|
       if @load.save
-        format.html { redirect_to @load, notice: "Load was successfully created." }
+        format.html { redirect_to loads_url, notice: "Load was successfully created." }
         format.json { render status: :created, location: @load }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +44,7 @@ class LoadsController < ApplicationController
   def update
     respond_to do |format|
       if @load.update(load_params)
-        format.html { redirect_to @load, notice: "Load was successfully updated." }
+        format.html { redirect_to loads_url, notice: "Load was successfully updated." }
         format.json { render :show, status: :ok, location: @load }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,8 +57,10 @@ class LoadsController < ApplicationController
   def destroy
     @load.destroy
     respond_to do |format|
-      format.html { redirect_to loads_url, notice: "Load was successfully destroyed." }
+      format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
       format.json { head :no_content }
+      f = "public/uploads/#{@load.title}"
+      File.delete(Rails.root.join(f)) if File.exist?(f)
     end
   end
 
