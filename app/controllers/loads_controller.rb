@@ -1,5 +1,5 @@
 class LoadsController < ApplicationController
-  before_action :set_load, only: %i[show edit update destroy]
+  before_action :set_load, only: %i[show destroy]
 
   def index
     @loads = Load.all
@@ -7,11 +7,11 @@ class LoadsController < ApplicationController
 
   def show
     if Current.user.id == @load.user_id
-    extension = @load.title.split('.')
-    send_file Rails.root.join('public', 'uploads', Current.user.id.to_s, @load.title),
-              type: "application/#{extension[1]}", x_sendfile: true
+      extension = @load.title.split('.')
+      send_file Rails.root.join('public', 'uploads', Current.user.id.to_s, @load.title),
+                type: "application/#{extension[1]}", x_sendfile: true
     else
-        fredirect_to loads_url
+      fredirect_to loads_url
     end
   end
 
@@ -20,7 +20,7 @@ class LoadsController < ApplicationController
   end
 
   def create
-    dir = File.dirname(Rails.root.join('public', 'uploads', Current.user.id.to_s,'*.*'))
+    dir = File.dirname(Rails.root.join('public', 'uploads', Current.user.id.to_s, '*.*'))
     FileUtils.mkdir_p(dir) unless File.directory?(dir)
     @load = Load.new(load_params)
     @load.user_id = Current.user.id
@@ -29,24 +29,19 @@ class LoadsController < ApplicationController
       file.write(uploaded_io.read)
     end
     @load.title = uploaded_io.original_filename
-      if @load.save
-       redirect_to loads_url, notice: 'Load was successfully created.'
-      else
+    if @load.save
+      redirect_to loads_url, notice: 'Load was successfully created.'
+    else
 
-        render :new
-      end
+      render :new
+    end
   end
 
   def destroy
-    if Current.user.id == @load.user_id
     @load.destroy
-    respond_to do |format|
-      format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
-      format.json { head :no_content }
-      f = "public/uploads/#{Current.user.id}/#{@load.title}"
-      File.delete(Rails.root.join(f)) if File.exist?(f)
-    end
-    end
+    redirect_to loads_url, notice: 'Load was successfully deleted.'
+    f = "public/uploads/#{Current.user.id}/#{@load.title}"
+    File.delete(Rails.root.join(f)) if File.exist?(f)
   end
 
   private

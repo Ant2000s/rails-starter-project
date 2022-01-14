@@ -11,16 +11,16 @@ Rails.application.routes.draw do
   get 'password', to: 'passwords#edit', as: :edit_password
   patch 'password', to: 'passwords#update'
 
-  #get 'loads', to: 'loads#new'
-  #post 'loads', to: 'loads#create'
-  #get '/loads/new', to: 'loads#new'
+  # get 'loads', to: 'loads#new'
+  # post 'loads', to: 'loads#create'
+  # get '/loads/new', to: 'loads#new'
   post '/loads/new', to: 'loads#create'
 
   get 'loads', to: 'loads#index'
   post 'loads', to: 'loads#show'
 
-  #get '/loads/[:id]/edit', to: 'loads#edit'
-  #post '/loads/[:id]/edit', to: 'loads#edit'
+  # get '/loads/[:id]/edit', to: 'loads#edit'
+  # post '/loads/[:id]/edit', to: 'loads#edit'
 
   delete 'logout', to: 'sessions#destroy'
 
