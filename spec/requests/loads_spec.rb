@@ -14,4 +14,9 @@ RSpec.describe '/loads', type: :request do
       expect(response.status).to eq(200)
     end
   end
+  describe '/loads/555' do
+    it 'has a 404 status code root' do
+      expect { get '/loads/555' }.to raise_error(ActiveRecord::RecordNotFound)
+          end
+  end
 end

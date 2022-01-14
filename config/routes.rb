@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get 'loads', to: 'loads#index'
   post 'loads', to: 'loads#show'
 
-  # get '/loads/[:id]/edit', to: 'loads#edit'
-  # post '/loads/[:id]/edit', to: 'loads#edit'
+  get '/loads/:id', to: 'loads#show'
+  post '/loads/:id', to: 'loads#show'
 
   delete 'logout', to: 'sessions#destroy'
 
