@@ -7,4 +7,11 @@ RSpec.describe '/sign_in', type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe 'GET /logout' do
+    it 'has a 3p2 status code root' do
+      delete '/logout'
+      expect(response.status).to eq(302)
+    end
+  end
 end
