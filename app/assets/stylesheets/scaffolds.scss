@@ -12,7 +12,9 @@ div.actions {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  background-color: #fbd7da;
+  border: 1px solid rgb(245, 151, 159);
+  border-radius: 4px;
   display: table; }
 
 #error_explanation {
