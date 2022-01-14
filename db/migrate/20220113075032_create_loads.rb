@@ -3,6 +3,7 @@ class CreateLoads < ActiveRecord::Migration[6.1]
     create_table :loads do |t|
       t.string :cover_letter
       t.string :title
+      t.integer :user_id
 
       t.timestamps
     end

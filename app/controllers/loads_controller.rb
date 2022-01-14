@@ -8,9 +8,16 @@ class LoadsController < ApplicationController
 
   # GET /loads/1 or /loads/1.json
   def show
+    if Current.user.id == @load.user_id
     extension = @load.title.split('.')
-    send_file Rails.root.join('public', 'uploads', @load.title),
+    send_file Rails.root.join('public', 'uploads', Current.user.id.to_s, @load.title),
               type: "application/#{extension[1]}", x_sendfile: true
+    else
+      respond_to do |format|
+        format.html { redirect_to loads_url}
+        format.json { render status: :created, location: @load }
+      end
+    end
   end
 
   # GET /loads/new
@@ -23,9 +30,12 @@ class LoadsController < ApplicationController
 
   # POST /loads or /loads.json
   def create
+    dir = File.dirname("#{Rails.root}/public/uploads/#{Current.user.id}/*.*")
+    FileUtils.mkdir_p(dir) unless File.directory?(dir)
     @load = Load.new(load_params)
+    @load.user_id = Current.user.id
     uploaded_io = params[:load][:title]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    File.open(Rails.root.join('public', 'uploads', Current.user.id.to_s, uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
     @load.title = uploaded_io.original_filename
@@ -42,6 +52,7 @@ class LoadsController < ApplicationController
 
   # PATCH/PUT /loads/1 or /loads/1.json
   def update
+    if Current.user.id == @load.user_id
     respond_to do |format|
       if @load.update(load_params)
         format.html { redirect_to loads_url, notice: 'Load was successfully updated.' }
@@ -52,15 +63,18 @@ class LoadsController < ApplicationController
       end
     end
   end
+  end
 
   # DELETE /loads/1 or /loads/1.json
   def destroy
+    if Current.user.id == @load.user_id
     @load.destroy
     respond_to do |format|
       format.html { redirect_to loads_url, notice: 'Load was successfully destroyed.' }
       format.json { head :no_content }
-      f = "public/uploads/#{@load.title}"
+      f = "public/uploads/#{Current.user.id}/#{@load.title}"
       File.delete(Rails.root.join(f)) if File.exist?(f)
+    end
     end
   end
 
@@ -73,6 +87,6 @@ class LoadsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def load_params
-    params.require(:load).permit(:cover_letter, :title)
+    params.require(:load).permit(:cover_letter, :title, :user_id)
   end
 end
