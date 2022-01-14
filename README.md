@@ -1,4 +1,4 @@
-# RubyNews!
+# Ruby project
 ![Unit Tests & Lint](https://github.com/Ant2000s/rails-starter-project/workflows/Unit%20Tests%20&%20Lint/badge.svg)  
 ### Ruby version 
  * 3.0.2
