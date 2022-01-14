@@ -16,7 +16,6 @@
         <td><%= load.title %></td>
         <td><%= load.updated_at %></td>        
         <td><%= link_to 'Download', load %></td>
-        <td><%= link_to 'Edit', edit_load_path(load) %></td>
         <td><%= link_to 'Delete', load, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
