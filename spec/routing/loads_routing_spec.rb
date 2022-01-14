@@ -14,10 +14,6 @@ RSpec.describe LoadsController, type: :routing do
       expect(get: '/loads/1').to route_to('loads#show', id: '1')
     end
 
-    it 'routes to #edit' do
-      expect(get: '/loads/1/edit').to route_to('loads#edit', id: '1')
-    end
-
     it 'routes to #create' do
       expect(post: '/loads').to route_to('loads#create')
     end

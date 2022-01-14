@@ -16,6 +16,7 @@ RSpec.describe '/loads', type: :request do
   # Load. As you add validations to Load, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
+    
     skip('Add a hash of attributes valid for your model')
   end
 
@@ -25,7 +26,7 @@ RSpec.describe '/loads', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Load.create! valid_attributes
+      load = Load.create! valid_attributes
       get loads_url
       expect(response).to be_successful
     end
@@ -42,14 +43,6 @@ RSpec.describe '/loads', type: :request do
   describe 'GET /new' do
     it 'renders a successful response' do
       get new_load_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /edit' do
-    it 'render a successful response' do
-      load = Load.create! valid_attributes
-      get edit_load_url(load)
       expect(response).to be_successful
     end
   end
@@ -77,36 +70,6 @@ RSpec.describe '/loads', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post loads_url, params: { load: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested load' do
-        load = Load.create! valid_attributes
-        patch load_url(load), params: { load: new_attributes }
-        load.reload
-        skip('Add assertions for updated state')
-      end
-
-      it 'redirects to the load' do
-        load = Load.create! valid_attributes
-        patch load_url(load), params: { load: new_attributes }
-        load.reload
-        expect(response).to redirect_to(load_url(load))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        load = Load.create! valid_attributes
-        patch load_url(load), params: { load: invalid_attributes }
         expect(response).to be_successful
       end
     end
