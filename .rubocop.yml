@@ -17,6 +17,11 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 80
 
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 2
 
 Metrics/BlockLength:
   Exclude:

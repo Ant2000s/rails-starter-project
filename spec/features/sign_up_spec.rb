@@ -8,7 +8,7 @@ describe 'the sign up process', type: :feature do
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Sign Up'
-    expect(current_path).to eq(root_path)
+    expect(page).to have_current_path(root_path, ignore_query: true)
     expect(page).to have_text('Logged in as: user1@gmail.com')
   end
 end
