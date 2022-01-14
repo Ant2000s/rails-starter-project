@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe '/loads', type: :request do
+RSpec.describe '/', type: :request do
   describe 'GET /index' do
     it 'has a 200 status code root' do
-      get '/loads'
+      get '/'
       expect(response.status).to eq(200)
     end
   end
