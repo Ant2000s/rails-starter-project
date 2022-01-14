@@ -258,7 +258,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
-  bootsnap (>= 1.4.4)
+  bootsnap (>= 1.9.3)
   byebug
   capybara
   database_cleaner-active_record
