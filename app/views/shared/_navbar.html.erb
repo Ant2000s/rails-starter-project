@@ -1,6 +1,7 @@
 <nav class="nav justify-content-center">
   <a class="nav-link" href="/">Home</a>
     <% if  Current.user %>
+      <a class="nav-link" href="/loads">Files</a>      
       <a class="nav-link" href="/password"><%= Current.user.email %> </a>
       <%= button_to 'Logout', logout_path, method: :delete, class: "btn btn-outline-secondary" %> 
       <% else%>

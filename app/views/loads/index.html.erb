@@ -1,10 +1,10 @@
-<h1>Loads</h1>
+<h1>Files</h1>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="table-light">
     <tr>
-      <th>Cover letter</th>
-      <th>Title</th>
+      <th>Filename</th>
+      <th>Upload time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,14 +13,14 @@
     <% @loads.each do |load| %>
       <% if Current.user.id == load.user_id%>
       <tr>
-        <td><%= load.cover_letter %></td>
         <td><%= load.title %></td>
+        <td><%= load.updated_at %></td>        
         <td><%= link_to 'Download', load %></td>
         <td><%= link_to 'Edit', edit_load_path(load) %></td>
         <td><%= link_to 'Delete', load, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
-      <% end %>
+    <% end %>
   </tbody>
 </table>
 
