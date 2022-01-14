@@ -7,4 +7,11 @@ RSpec.describe '/loads', type: :request do
       expect(response.status).to eq(200)
     end
   end
+
+  describe 'POST /loads/new' do
+    it 'has a 200 status code root' do
+      get '/loads/new'
+      expect(response.status).to eq(200)
+    end
+  end
 end

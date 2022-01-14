@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   get 'password', to: 'passwords#edit', as: :edit_password
   patch 'password', to: 'passwords#update'
 
-  # get 'loads', to: 'loads#new'
-  # post 'loads', to: 'loads#create'
-  # get '/loads/new', to: 'loads#new'
+  get 'loads', to: 'loads#new'
   post '/loads/new', to: 'loads#create'
 
   get 'loads', to: 'loads#index'

@@ -8,8 +8,8 @@ RSpec.describe '/sign_in', type: :request do
     end
   end
 
-  describe 'GET /logout' do
-    it 'has a 3p2 status code root' do
+  describe 'DELETE /logout' do
+    it 'has a 302 status code root' do
       delete '/logout'
       expect(response.status).to eq(302)
     end
