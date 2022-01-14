@@ -31,5 +31,4 @@ class LoadsController < ApplicationController
   def set_load
     @load = Load.find(params[:id])
   end
-
 end
